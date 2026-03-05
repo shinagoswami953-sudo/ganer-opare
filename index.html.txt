@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title> Gaaner Oparey Archive</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+background:#efe6d6;
+font-family:'Lora',serif;
+margin:0;
+color:#5a1020;
+}
+
+header{
+text-align:center;
+padding:60px;
+}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:60px;
+margin:0;
+}
+
+.section-title{
+text-align:center;
+font-size:30px;
+margin-top:60px;
+}
+
+/* SEARCH BAR */
+
+.search{
+text-align:center;
+margin:30px;
+}
+
+.search input{
+width:350px;
+padding:15px;
+font-size:18px;
+border-radius:30px;
+border:1px solid #cbbba0;
+}
+
+/* CHARACTER GRID */
+
+.characters{
+display:grid;
+grid-template-columns:repeat(auto-fit,260px);
+justify-content:center;
+gap:40px;
+padding:40px;
+}
+
+.character{
+text-align:center;
+cursor:pointer;
+}
+
+.character img{
+width:260px;
+height:340px;
+object-fit:cover;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.character-name{
+font-size:20px;
+font-weight:bold;
+margin-top:10px;
+}
+
+/* CHARACTER PAGE */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+align-items:center;
+justify-content:center;
+}
+
+.popup-box{
+background:#fff8ec;
+padding:40px;
+width:80%;
+max-width:900px;
+border-radius:10px;
+}
+
+.popup-box img{
+width:280px;
+float:left;
+margin-right:30px;
+border-radius:10px;
+}
+
+.close{
+float:right;
+cursor:pointer;
+font-size:22px;
+}
+
+/* SONG SECTION */
+
+.song-list{
+max-width:800px;
+margin:auto;
+padding:20px;
+}
+
+.song{
+margin:40px 0;
+}
+
+.song-title{
+font-weight:bold;
+font-size:22px;
+margin-bottom:8px;
+}
+
+.song-desc{
+margin-top:10px;
+font-size:16px;
+}
+
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,250px);
+justify-content:center;
+gap:20px;
+padding:40px;
+}
+
+.gallery img{
+width:250px;
+height:170px;
+object-fit:cover;
+border-radius:8px;
+box-shadow:0 6px 18px rgba(0,0,0,0.2);
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<header>
+
+<h1>Gaaner Oparey Archive</h1>
+
+</header>
+
+
+<!-- SEARCH -->
+
+<div class="search">
+
+<input id="searchBox" placeholder="Search character...">
+
+</div>
+
+
+
+<h2 class="section-title">Characters</h2>
+
+<div class="characters">
+
+
+<div class="character"
+onclick="showCharacter(
+'Gora',
+'Age: unknown',
+'Occupation: Singer',
+'A passionate Rabindra Sangeet singer with deep emotional connection to music.',
+'.jpg'
+)">
+
+<img src="db790472-0792-46cb-b58c-e305907aa5db.jpg">
+
+<div class="character-name">Gora</div>
+
+</div>
+
+
+<div class="character"
+onclick="showCharacter(
+'Pupe (Sohini)',
+'Age: 22',
+'Occupation: Singer',
+'A curious and spirited young woman discovering music and identity.',
+'pupe.jpg'
+)">
+
+<img src="f62ef6e7-fadb-4ac8-bb07-4897b208630d.jpg">
+
+<div class="character-name">Pupe</div>
+
+</div>
+
+
+</div>
+
+
+
+<h2 class="section-title">Songs</h2>
+
+<div class="song-list">
+
+
+<div class="song">
+
+<div class="song-title">Tomar Khola Hawa</div>
+
+<audio controls>
+
+<source src="song1.mp3" type="audio/mpeg">
+
+</audio>
+
+<div class="song-desc">
+
+Singer: Rabindra Sangeet Artist  
+Context: Sung during an emotional turning point in the story when the character begins to realise the freedom of the heart.
+
+</div>
+
+</div>
+
+
+
+<div class="song">
+
+<div class="song-title">Amaro Porano Jaha Chay</div>
+
+<audio controls>
+
+<source src="song2.mp3" type="audio/mpeg">
+
+</audio>
+
+<div class="song-desc">
+
+Singer: Rabindra Sangeet Artist  
+Context: A romantic Rabindra song expressing longing and emotional devotion.
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<h2 class="section-title">Photo Gallery</h2>
+
+<div class="gallery">
+
+<img src="photo1.jpg">
+
+<img src="photo2.jpg">
+
+<img src="photo3.jpg">
+
+<img src="photo4.jpg">
+
+</div>
+
+
+
+<div class="popup" id="popup">
+
+<div class="popup-box">
+
+<span class="close" onclick="closePopup()">✖</span>
+
+<img id="charImage">
+
+<h2 id="charName"></h2>
+
+<p id="charAge"></p>
+
+<p id="charJob"></p>
+
+<p id="charDesc"></p>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+function showCharacter(name,age,job,desc,image){
+
+document.getElementById("charName").innerText=name
+document.getElementById("charAge").innerText=age
+document.getElementById("charJob").innerText=job
+document.getElementById("charDesc").innerText=desc
+document.getElementById("charImage").src=image
+
+document.getElementById("popup").style.display="flex"
+
+}
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none"
+
+}
+
+
+/* SEARCH SYSTEM */
+
+document.getElementById("searchBox").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase()
+
+let cards=document.querySelectorAll(".character")
+
+cards.forEach(function(card){
+
+let name=card.innerText.toLowerCase()
+
+if(name.includes(value)){
+card.style.display="block"
+}
+else{
+card.style.display="none"
+}
+
+})
+
+})
+
+</script>
+
+</body>
+
+</html>
